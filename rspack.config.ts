@@ -12,7 +12,6 @@ export default withZephyr()({
   context: __dirname,
     output: {
     publicPath: 'http://localhost:3001/', 
-    uniqueName: 'remote',
   },
   entry: {
     main: "./src/index.tsx",
