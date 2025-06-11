@@ -5,7 +5,7 @@ export const Button: React.FC = () => {
   const [count, setCount] = useState(0);
   return (
     <button type="button" onClick={() => setCount((count) => count + 1)}>
-      MFE1 count {count}
+      MFE2 test count {count}
     </button>
   );
 };

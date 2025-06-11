@@ -10,6 +10,10 @@ const targets = ["chrome >= 87", "edge >= 88", "firefox >= 78", "safari >= 14"];
 
 export default withZephyr()({
   context: __dirname,
+    output: {
+    publicPath: 'http://localhost:3001/', 
+    uniqueName: 'remote',
+  },
   entry: {
     main: "./src/index.tsx",
   },
@@ -20,8 +24,6 @@ export default withZephyr()({
     host: "localhost",
     port: 3001,
     open: true,
-    hot: true,
-    historyApiFallback: true,
   },
   module: {
     rules: [
@@ -57,8 +59,8 @@ export default withZephyr()({
   },
   plugins: [
     new ModuleFederationPlugin({
-      name: "host",
-	  filename: "remoteEntry.js",
+      name: "remote",
+      filename: "remoteEntry.js",
       exposes: {
         "./button": "./src/button.tsx",
       },
@@ -66,7 +68,7 @@ export default withZephyr()({
     }),
     new rspack.HtmlRspackPlugin({
       template: "./index.html",
-    }),
+    }), 
     // @ts-expect-error
     isDev ? new RefreshPlugin() : null,
   ].filter(Boolean),
